@@ -1,5 +1,7 @@
 "use client";
 
+import { RiMenu4Fill } from "react-icons/ri";
+
 import { FiYoutube } from "react-icons/fi";
 import Link from "next/link";
 import { Button } from "./ui/button";
@@ -16,63 +18,105 @@ import {
   NavigationMenuIndicator,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import { Toggle } from "./ui/toggle";
+import mobileNavbar from "./navbars";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between px-6 border-b border-gray-600 py-2">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <span className="flex gap-2 text-xl items-center font-bold pr-3"><FiYoutube /> YTDOWNS</span>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Home
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+    <div className="mobile:!hidden">
+      <div className="flex items-center justify-between px-6 border-b py-2">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <span className="flex gap-2 text-xl items-center font-bold pr-3">
+                <FiYoutube /> YTDOWNS
+              </span>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <ModeToggle />
+            </NavigationMenuItem>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Toggle variant="outline">
+                  <RiMenu4Fill />
+                </Toggle>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <span className="flex gap-2 text-xl items-center font-bold pr-3 pb-6">
+                    <FiYoutube /> YTDOWNS
+                  </span>
+                </SheetHeader>
+                <NavigationMenuList>
+                  <div className="flex flex-col gap-1 w-full justify-center">
+                    <NavigationMenuItem>
+                      <Link href="/" legacyBehavior passHref>
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle() + " !w-full"}
+                        >
+                          Home
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Privacy
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/docs" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                About
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/https://discord.gg/UBQ9UKnuMt" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Contact
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-      <NavigationMenu>
-        <NavigationMenuList className="gap-1">
-          <NavigationMenuItem>
-            <ModeToggle />
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Button variant="outline">
-              <Link href="/">Login</Link>
-            </Button>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Button>
-              <Link href="/">Sign In</Link>
-            </Button>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+                    <NavigationMenuItem className="w-full">
+                      <Link
+                        href="/docs"
+                        className="w-full"
+                        legacyBehavior
+                        passHref
+                      >
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle() + " !w-full"}
+                        >
+                          About
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link href="/docs" legacyBehavior passHref>
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle() + " !w-full"}
+                        >
+                          About
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Link
+                        href="/https://discord.gg/UBQ9UKnuMt"
+                        legacyBehavior
+                        passHref
+                      >
+                        <NavigationMenuLink
+                          className={navigationMenuTriggerStyle() + " !w-full"}
+                        >
+                          Contact
+                        </NavigationMenuLink>
+                      </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Button variant="outline" className="w-full">
+                        <Link href="/">Login</Link>
+                      </Button>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                      <Button className="w-full">
+                        <Link href="/">Sign In</Link>
+                      </Button>
+                    </NavigationMenuItem>
+                  </div>
+                </NavigationMenuList>
+              </SheetContent>
+            </Sheet>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
     </div>
   );
 }
