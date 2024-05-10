@@ -23,7 +23,7 @@ export default function Navbar() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <span className="flex gap-2 text-xl items-center font-bold pr-3"><FiYoutube /> YTDOWN</span>
+            <span className="flex gap-2 text-xl items-center font-bold pr-3"><FiYoutube /> YTDOWNS</span>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/docs" legacyBehavior passHref>
